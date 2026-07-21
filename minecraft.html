@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Producto | GameStore</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+
+<body>
+
+<div class="contenedor">
+
+    <header>
+
+        <a href="videojuegos.html">
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+
+        <i class="fa-solid fa-heart"></i>
+
+    </header>
+
+    <section class="minecraft">
+
+        <div class="imagen">
+
+            <img src="img/minecraft.jpg" alt="Minecraft">
+
+        </div>
+
+        <div class="info">
+
+            <h1 id="nombreProducto">Minecraft</h1>
+
+            <h2 id="precioProducto">$699</h2>
+
+            <div class="estrellas">
+                ★★★★★
+                <span>(120)</span>
+            </div>
+
+
+            <div class="cantidad">
+
+                <label>Cantidad:</label>
+
+<button onclick="restar()">-</button>
+
+<input type="text" id="cantidad" value="1">
+
+<button onclick="sumar()">+</button>
+
+<script src="js/script.js"></script>
+
+                </div>
+
+            </div>
+
+            <div class="botones">
+
+
+                <button class="btn2">
+                    COMPRAR AHORA
+                </button>
+
+            </div>
+
+            <div class="descripcion">
+
+                <h3>Descripción</h3>
+
+                <p>
+                    Minecraft es un videojuego de construcción y exploración 
+                    de "mundo abierto" (tipo sandbox) donde todo está formado 
+                    por bloques tridimensionales.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+</body>
+</html>
