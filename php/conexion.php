@@ -1,8 +1,8 @@
 <?php
 
 $host = "localhost";
-$usuario = "root";
-$password = "";
+$usuario = "gamestore";
+$password = "jarillo210308";
 $bd = "gamestore";
 
 $conn = mysqli_connect($host, $usuario, $password, $bd);

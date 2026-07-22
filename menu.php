@@ -2,14 +2,13 @@
 
 session_start();
 
-if(!isset($_SESSION['id'])){
-
+if (!isset($_SESSION['id'])) {
     header("Location: index.php");
     exit();
-
 }
 
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -32,29 +31,54 @@ if(!isset($_SESSION['id'])){
 
 <div class="menu">
 
-<img src="img/logo.png" class="logo">
+<img
+src="img/logo.png"
+class="logo"
+alt="Logo de GameStore"
+>
 
 <h1>GameStore</h1>
 
-<h2>Bienvenido, <?php echo $_SESSION['usuario']; ?></h2>
+<h2>
+Bienvenido, <?php echo htmlspecialchars($_SESSION['usuario']); ?>
+</h2>
 
-<button onclick="window.location='consolas.html'">
- Consolas
-</button>
+<a href="/Proyecto_SeminarioAxel/consolas.php">
+    <button type="button">
+        Consolas
+    </button>
+</a>
 
-<button onclick="window.location='accesorios.html'">
- Accesorios
-</button>
+<a href="/Proyecto_SeminarioAxel/accesorios.php">
+    <button type="button">
+        Accesorios
+    </button>
+</a>
 
-<button onclick="window.location='videojuegos.html'">
- Videojuegos
-</button>
+<a href="/Proyecto_SeminarioAxel/videojuegos.php">
+    <button type="button">
+        Videojuegos
+    </button>
+</a>
 
-<button class="guardados" onclick="window.location='guardados.html'">
- Productos Guardados
-</button>
+<a href="/Proyecto_SeminarioAxel/mis_compras.php">
+    <button type="button" class="compras">
+        Mis compras
+    </button>
+</a>
 
-<button class="salir" onclick="cerrarSesion()">
+<a href="/Proyecto_SeminarioAxel/guardados.php">
+    <button type="button" class="guardados">
+        Productos Guardados
+    </button>
+</a>
+
+
+<button
+type="button"
+class="salir"
+onclick="cerrarSesion()"
+>
 Cerrar sesión
 </button>
 

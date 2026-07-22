@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 
 if(!isset($_SESSION['id'])){
@@ -7,6 +8,7 @@ if(!isset($_SESSION['id'])){
 }
 
 include("php/conexion.php");
+
 ?>
 
 <!DOCTYPE html>
@@ -17,7 +19,7 @@ include("php/conexion.php");
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Consolas</title>
+<title>Videojuegos</title>
 
 <link rel="stylesheet" href="css/style.css">
 
@@ -31,9 +33,9 @@ include("php/conexion.php");
 
 <header>
 
-<h1>🎮 Consolas</h1>
+<h1>🕹️ Videojuegos</h1>
 
-<button class="volver" onclick="window.location='/Proyecto_SeminarioAxel/menu.php'">
+<button class="volver" onclick="window.location='menu.php'">
 
 ← Menú
 
@@ -45,12 +47,12 @@ include("php/conexion.php");
 
 <?php
 
-$sql = "SELECT * FROM productos WHERE categoria='Consolas'";
+$sql = "SELECT * FROM productos WHERE categoria='Videojuegos'";
 
 $resultado = mysqli_query($conn, $sql);
 
 if(!$resultado){
-    die("Error al cargar productos: " . mysqli_error($conn));
+    die("Error al cargar los videojuegos: " . mysqli_error($conn));
 }
 
 while($fila = mysqli_fetch_assoc($resultado)){
@@ -69,7 +71,7 @@ alt="<?php echo htmlspecialchars($fila['nombre']); ?>"
 </h3>
 
 <p class="precio">
-$<?php echo number_format($fila['precio'], 2); ?>
+$<?php echo number_format($fila['precio'],2); ?>
 </p>
 
 <form action="producto.php" method="GET">
@@ -77,8 +79,7 @@ $<?php echo number_format($fila['precio'], 2); ?>
 <input
 type="hidden"
 name="id"
-value="<?php echo $fila['id']; ?>"
->
+value="<?php echo $fila['id']; ?>">
 
 <button type="submit">
 Ver
@@ -91,8 +92,7 @@ Ver
 <input
 type="hidden"
 name="idProducto"
-value="<?php echo $fila['id']; ?>"
->
+value="<?php echo $fila['id']; ?>">
 
 <button type="submit">
 Guardar
@@ -103,7 +103,9 @@ Guardar
 </div>
 
 <?php
+
 }
+
 ?>
 
 </div>

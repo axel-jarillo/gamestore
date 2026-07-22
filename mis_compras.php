@@ -11,16 +11,23 @@ include("php/conexion.php");
 
 $idUsuario = $_SESSION['id'];
 
-$sql = "SELECT productos.*
-        FROM guardados
+$sql = "SELECT
+            compras.id,
+            compras.cantidad,
+            compras.fecha,
+            productos.nombre,
+            productos.precio,
+            productos.imagen
+        FROM compras
         INNER JOIN productos
-        ON guardados.id_producto = productos.id
-        WHERE guardados.id_usuario = '$idUsuario'";
+        ON compras.id_producto = productos.id
+        WHERE compras.id_usuario = '$idUsuario'
+        ORDER BY compras.fecha DESC";
 
 $resultado = mysqli_query($conn, $sql);
 
 if (!$resultado) {
-    die("Error en la consulta: " . mysqli_error($conn));
+    die("Error al cargar las compras: " . mysqli_error($conn));
 }
 
 ?>
@@ -33,7 +40,7 @@ if (!$resultado) {
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Productos Guardados</title>
+<title>Mis compras</title>
 
 <link rel="stylesheet" href="css/style.css">
 
@@ -47,9 +54,12 @@ if (!$resultado) {
 
 <header>
 
-<h1>⭐ Productos Guardados</h1>
+<h1>🛒 Mis compras</h1>
 
-<button class="volver" onclick="window.location='menu.php'">
+<button
+class="volver"
+onclick="window.location='/Proyecto_SeminarioAxel/menu.php'"
+>
 ← Menú
 </button>
 
@@ -62,6 +72,8 @@ if (!$resultado) {
 if (mysqli_num_rows($resultado) > 0) {
 
     while ($fila = mysqli_fetch_assoc($resultado)) {
+
+        $subtotal = $fila['precio'] * $fila['cantidad'];
 
 ?>
 
@@ -76,23 +88,17 @@ alt="<?php echo htmlspecialchars($fila['nombre']); ?>"
 <?php echo htmlspecialchars($fila['nombre']); ?>
 </h3>
 
-<p class="precio">
-$<?php echo number_format($fila['precio'], 2); ?>
+<p>
+Cantidad: <?php echo $fila['cantidad']; ?>
 </p>
 
-<form action="producto.php" method="GET">
+<p class="precio">
+Total: $<?php echo number_format($subtotal, 2); ?>
+</p>
 
-<input
-type="hidden"
-name="id"
-value="<?php echo $fila['id']; ?>"
->
-
-<button type="submit">
-Ver
-</button>
-
-</form>
+<p>
+Fecha: <?php echo htmlspecialchars($fila['fecha']); ?>
+</p>
 
 </div>
 
@@ -104,15 +110,9 @@ Ver
 
 ?>
 
-<div class="sin-productos">
-
-<p>No tienes productos guardados.</p>
-
-<button onclick="window.location='menu.php'">
-Ver productos
-</button>
-
-</div>
+<p style="text-align:center; width:100%; font-size:20px;">
+Todavía no has realizado compras.
+</p>
 
 <?php
 
